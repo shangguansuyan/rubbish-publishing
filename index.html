@@ -1,1 +1,88 @@
-<!-- index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Rubbish Publishing</title>
+  <meta name="description" content="Rubbish Publishing: a structured, open-access parody publisher with journals across disciplines."/>
+  <link rel="stylesheet" href="/assets/css/site.css"/>
+</head>
+<body>
+  <div class="container">
+    <div class="nav">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>Rubbish Publishing</span>
+      </div>
+      <div class="navlinks">
+        <a class="pill" href="/index.html">Home</a>
+        <a class="pill" href="/journals.html">Journals</a>
+        <a class="pill" href="/editorial-board.html">Editorial Board</a>
+      </div>
+    </div>
+
+    <div class="hero">
+      <div>
+        <h1 class="h1">Rubbish Publishing</h1>
+        <p class="sub">
+          An open-access parody publisher with a serious UI: indexed journals, structured metadata, and transparent editorial governance.
+          This site is static and reproducible by design.
+        </p>
+        <div style="margin-top:14px" class="row">
+          <a class="btn" href="/journals.html">Browse journals</a>
+          <a class="btn secondary" href="/editorial-board.html">View editorial board</a>
+        </div>
+
+        <hr class="sep"/>
+        <div class="alert">
+          Notice: This portal is under verification. For inquiries, contact <strong>support@aolr.pub</strong>.
+        </div>
+      </div>
+
+      <div>
+        <div class="kpi" id="kpi"></div>
+        <div style="margin-top:12px" class="section">
+          <div class="sectionhead">
+            <h2>Featured journals</h2>
+            <div class="hint">Auto-loaded from data/journals.json</div>
+          </div>
+          <div class="grid" id="featuredJournals"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sectionhead">
+        <h2>About</h2>
+        <div class="hint">Scope · Policy · Infrastructure</div>
+      </div>
+      <p class="sub" style="margin:0">
+        We prioritize clear taxonomy (journal slugs), durable identifiers (future DOI/Handle integration), and data transparency (JSON-first).
+        Each journal page reads its metadata and articles from machine-readable files to minimize manual errors.
+      </p>
+    </div>
+
+    <div class="footer">
+      © <span id="year"></span> Rubbish Publishing · Built with static files + JSON
+    </div>
+  </div>
+
+  <script src="/assets/js/site.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 修正 GitHub Pages 项目页 basePath
+    document.querySelectorAll('link[href^="/"], a[href^="/"], script[src^="/"]').forEach(n=>{
+      const attr = n.tagName === 'LINK' ? 'href' : (n.tagName === 'SCRIPT' ? 'src' : 'href');
+      n.setAttribute(attr, Site.withBase(n.getAttribute(attr)));
+    });
+
+    Site.renderJournals({
+      mountId: 'featuredJournals',
+      kpiId: 'kpi',
+      limit: 6,
+      dataUrl: '/data/journals.json'
+    });
+  </script>
+</body>
+</html>
