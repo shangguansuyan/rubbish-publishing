@@ -1,1 +1,65 @@
-<!-- editorial-board.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Editorial Board · Rubbish Publishing</title>
+  <meta name="description" content="Editorial board members."/>
+  <link rel="stylesheet" href="/assets/css/site.css"/>
+</head>
+<body>
+  <div class="container">
+    <div class="nav">
+      <div class="brand"><span class="dot"></span><span>Rubbish Publishing</span></div>
+      <div class="navlinks">
+        <a class="pill" href="/index.html">Home</a>
+        <a class="pill" href="/journals.html">Journals</a>
+        <a class="pill" href="/editorial-board.html">Editorial Board</a>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sectionhead">
+        <h2>Editorial board</h2>
+        <div class="hint">Auto-loaded from data/members.json</div>
+      </div>
+      <div class="row">
+        <input id="q" class="input" placeholder="Search members…"/>
+        <button class="btn" id="joinBtn">Join the board</button>
+      </div>
+
+      <div id="joinPanel" style="display:none; margin-top:12px">
+        <div class="alert">
+          说明：纯静态站点无法直接写入 members.json（浏览器无权限写 GitHub 仓库文件）。
+          如果你要“提交表单→自动写入 members.json”，需要用 GitHub Issues/PR 工作流 或 serverless（GitHub Actions / Netlify Functions）。
+          我可以给你做一个“提交表单→自动生成 PR”的方案。
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="boardTable"></div>
+
+    <div class="footer">© <span id="year"></span> Rubbish Publishing</div>
+  </div>
+
+  <script src="/assets/js/site.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.querySelectorAll('link[href^="/"], a[href^="/"], script[src^="/"]').forEach(n=>{
+      const attr = n.tagName === 'LINK' ? 'href' : (n.tagName === 'SCRIPT' ? 'src' : 'href');
+      n.setAttribute(attr, Site.withBase(n.getAttribute(attr)));
+    });
+
+    Site.renderBoard({
+      mountId: 'boardTable',
+      searchId: 'q',
+      dataUrl: '/data/members.json'
+    });
+
+    document.getElementById('joinBtn').addEventListener('click', ()=>{
+      const p = document.getElementById('joinPanel');
+      p.style.display = (p.style.display === 'none') ? 'block' : 'none';
+    });
+  </script>
+</body>
+</html>
