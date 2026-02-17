@@ -1,52 +1,11 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Articles · Rubbish Cancer</title>
-  <meta name="description" content="All articles in Rubbish Cancer."/>
-  <link rel="stylesheet" href="/assets/css/site.css"/>
-</head>
-<body>
-  <div class="container">
-    <div class="nav">
-      <div class="brand"><span class="dot"></span><span>Rubbish Publishing</span></div>
-      <div class="navlinks">
-        <a class="pill" href="/index.html">Home</a>
-        <a class="pill" href="/journals.html">Journals</a>
-        <a class="pill" href="/editorial-board.html">Editorial Board</a>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="sectionhead">
-        <h2>Rubbish Cancer · Articles</h2>
-        <div class="hint">Search within this journal</div>
-      </div>
-      <div class="row">
-        <input id="q" class="input" placeholder="Search articles…"/>
-        <a class="btn secondary" href="./index.html">Back to journal</a>
-      </div>
-    </div>
-
-    <div class="section" id="all"></div>
-
-    <div class="footer">© <span id="year"></span> Rubbish Publishing</div>
-  </div>
-
-  <script src="/assets/js/site.js"></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    document.querySelectorAll('link[href^="/"], a[href^="/"], script[src^="/"]').forEach(n=>{
-      const attr = n.tagName === 'LINK' ? 'href' : (n.tagName === 'SCRIPT' ? 'src' : 'href');
-      n.setAttribute(attr, Site.withBase(n.getAttribute(attr)));
-    });
-
-    Site.renderArticles({
-      mountId: 'all',
-      searchId: 'q',
-      dataUrl: './articles.json'
-    });
-  </script>
-</body>
-</html>
+[
+  {
+    "date": "2026-02-18",
+    "title": "A Reproducible Null Result in Tumor Metabolism Under Over-Optimized Pipelines",
+    "authors": "Gu J.; Sheng S.",
+    "type": "Article",
+    "doi": "",
+    "url": "",
+    "abstract": "This is a placeholder abstract."
+  }
+]
