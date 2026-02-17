@@ -1,1 +1,62 @@
-<!-- Rubbish Cancer journal page -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Rubbish Cancer · Journal</title>
+  <meta name="description" content="Rubbish Cancer journal home."/>
+  <link rel="stylesheet" href="/assets/css/site.css"/>
+</head>
+<body>
+  <div class="container">
+    <div class="nav">
+      <div class="brand"><span class="dot"></span><span>Rubbish Publishing</span></div>
+      <div class="navlinks">
+        <a class="pill" href="/index.html">Home</a>
+        <a class="pill" href="/journals.html">Journals</a>
+        <a class="pill" href="/editorial-board.html">Editorial Board</a>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sectionhead">
+        <h2>Rubbish Cancer</h2>
+        <div class="hint">Journal home</div>
+      </div>
+      <p class="sub" style="margin:0">
+        Oncology, tumor biology, clinical evidence, and well-controlled absurdity.
+      </p>
+      <div class="row" style="margin-top:12px">
+        <a class="btn" href="./articles.html">View all articles</a>
+        <a class="btn secondary" href="/journals.html">Back to journals</a>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sectionhead">
+        <h2>Latest articles</h2>
+        <div class="hint">Showing latest 6</div>
+      </div>
+      <div id="latest"></div>
+    </div>
+
+    <div class="footer">© <span id="year"></span> Rubbish Publishing</div>
+  </div>
+
+  <script src="/assets/js/site.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.querySelectorAll('link[href^="/"], a[href^="/"], script[src^="/"]').forEach(n=>{
+      const attr = n.tagName === 'LINK' ? 'href' : (n.tagName === 'SCRIPT' ? 'src' : 'href');
+      n.setAttribute(attr, Site.withBase(n.getAttribute(attr)));
+    });
+
+    // 注意：这里用相对路径读取本刊 articles.json
+    Site.renderArticles({
+      mountId: 'latest',
+      dataUrl: './articles.json',
+      limit: 6
+    });
+  </script>
+</body>
+</html>
