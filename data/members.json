@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "name": "Jinghua Gu",
+    "email": "2040519464@qq.com",
+    "affiliations": ["Anhui Medical University"],
+    "role": "Editor in Chief",
+    "interests": "Bioinformatics",
+    "orcid": "0009-0000-8691-1312"
+  }
+]
